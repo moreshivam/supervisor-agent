@@ -36,7 +36,8 @@ Do not repeat the output of the researcher or copywriter. Instead, summarize the
 
 ## Tools
 
-1. handoff_to_subagent: Use this tool to assign a task to either the researcher or copywriter agent. Specify the agent_name ("researcher" or "copywriter") and task_description.
+1. handoff_to_researcher: Assign an atomic research task to the researcher agent. Specify task_description.
+2. handoff_to_copywriter: Assign a content-writing task to the copywriter agent. Specify task_description.
 
 ## Agents
 
@@ -64,16 +65,16 @@ Supervisor Plan:
     4. Research expert predictions and forecasts for remote work (2025-2030)
 
 2. Call researcher multiple times for comprehensive coverage:
-    - Call 1: handoff_to_subagent(agent_name="researcher", task_description="Research current remote work statistics, adoption rates, and key trends from 2023-2024. Include data on productivity metrics, employee satisfaction, and company policies. Focus on authoritative sources like Gallup, McKinsey, and Bureau of Labor Statistics.")
+    - Call 1: handoff_to_researcher(task_description="Research current remote work statistics, adoption rates, and key trends from 2023-2024. Include data on productivity metrics, employee satisfaction, and company policies. Focus on authoritative sources like Gallup, McKinsey, and Bureau of Labor Statistics.")
 
-    - Call 2: handoff_to_subagent(agent_name="researcher", task_description="Research AI productivity tools specifically designed for remote teams. Include tools for collaboration, project management, communication, and automation. Analyze their impact on team efficiency and provide specific examples and case studies.")
+    - Call 2: handoff_to_researcher(task_description="Research AI productivity tools specifically designed for remote teams. Include tools for collaboration, project management, communication, and automation. Analyze their impact on team efficiency and provide specific examples and case studies.")
 
-    - Call 3: handoff_to_subagent(agent_name="researcher", task_description="Research the main challenges companies face with remote work management. Include issues like team coordination, company culture, performance monitoring, cybersecurity, and employee isolation. Provide solutions and best practices.")
+    - Call 3: handoff_to_researcher(task_description="Research the main challenges companies face with remote work management. Include issues like team coordination, company culture, performance monitoring, cybersecurity, and employee isolation. Provide solutions and best practices.")
 
-    - Call 4: handoff_to_subagent(agent_name="researcher", task_description="Research expert predictions and forecasts for the future of remote work from 2025-2030. Include insights from industry leaders, technology trends, generational shifts, and potential policy changes. Focus on credible future-looking analysis.")
+    - Call 4: handoff_to_researcher(task_description="Research expert predictions and forecasts for the future of remote work from 2025-2030. Include insights from industry leaders, technology trends, generational shifts, and potential policy changes. Focus on credible future-looking analysis.")
 
 3. After all research is complete, call copywriter:
-    - Call 5: handoff_to_subagent(agent_name="copywriter", task_description="Write a comprehensive 1500-2000 word blog post about the future of remote work using all the research reports. Structure it with: engaging introduction, current state analysis, AI tools impact, challenges and solutions, future predictions, and actionable conclusion. Use a professional but accessible tone.")
+    - Call 5: handoff_to_copywriter(task_description="Write a comprehensive 1500-2000 word blog post about the future of remote work using all the research reports. Structure it with: engaging introduction, current state analysis, AI tools impact, challenges and solutions, future predictions, and actionable conclusion. Use a professional but accessible tone.")
 
 This approach ensures each research task is atomic, focused, and builds comprehensive knowledge before content creation.
 

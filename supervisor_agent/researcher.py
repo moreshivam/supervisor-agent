@@ -70,7 +70,13 @@ def build_researcher_agent():
     supervisor, research_reports accumulated here flow back up automatically
     when this node finishes.
     """
-    model = ChatGroq(model=RESEARCHER_MODEL, temperature=0)
+    # max_retries: Groq/Llama tool-calling occasionally malforms a tool call
+    # (e.g. jamming JSON args into the tool name string), which surfaces as a
+    # BadRequestError. Retrying the LLM call alone has a good chance of
+    # getting a well-formed call on the next attempt. (Runnable.with_retry()
+    # doesn't work here - it wraps the model in a RunnableRetry that no
+    # longer exposes bind_tools(), which create_react_agent needs.)
+    model = ChatGroq(model=RESEARCHER_MODEL, temperature=0, max_retries=3)
     return create_react_agent(
         model=model,
         tools=[search_web, extract_content_from_webpage, generate_research_report],

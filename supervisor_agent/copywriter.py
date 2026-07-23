@@ -88,7 +88,8 @@ def build_copywriter_agent():
     research_reports accumulated earlier and write generated_content that
     flows back up once this node finishes.
     """
-    model = ChatGroq(model=COPYWRITER_MODEL, temperature=0.3)
+    # See researcher.py for why max_retries is set (and why with_retry() isn't used).
+    model = ChatGroq(model=COPYWRITER_MODEL, temperature=0.3, max_retries=3)
     return create_react_agent(
         model=model,
         tools=[review_research_reports, generate_blog_post, generate_linkedin_post],
